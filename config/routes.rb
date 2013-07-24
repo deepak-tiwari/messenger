@@ -1,6 +1,7 @@
 App1::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
   root  'static_pages#home'
   match '/home',    to: 'static_pages#home',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
