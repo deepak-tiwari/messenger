@@ -2,11 +2,12 @@
 	<% content1 = render(:partial => 'messages/all_message', :locals => {:message => @message}) %>
 	<% content2 = render(:partial => 'messages/form') %>
 	$("#all_messages").prepend("<%= j(content1) %>");
-	$("#message_form").replaceWith("<%= j(content2) %>");
-	$("#compose_message_error").replaceWith("<div class='alert alert-failure' id='compose_message_error'>Congratulations !! Your message is sent</div>").show();
+	
+	$("#new_message").replaceWith("<%= j(content2) %>");
+	$("#compose_message_error").replaceWith("<div class='alert alert-success' id='compose_message_error'>Congratulations !! Your message is sent</div>").show();
 <% else %>
     <% content2 = render(:partial => 'messages/form') %>
-    $("#message_form").replaceWith("<%= j(content2) %>");
+    $("#new_message").replaceWith("<%= j(content2) %>");
 	$("#compose_message_error").replaceWith("<div class='alert alert-failure' id='compose_message_error'>User or Content cannot be blank</div>").show();
     
 <% end %>
