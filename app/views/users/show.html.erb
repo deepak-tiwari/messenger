@@ -6,10 +6,13 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+
     </section>
   </aside>
   <div class="span8">
+
     <%= render 'follow_form' if signed_in? %>
+    <h2><u><%= link_to 'Chat History' ,chathistory_user_path if signed_in? %></u></h2>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">

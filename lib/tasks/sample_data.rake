@@ -4,6 +4,7 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    rand_messages
   end
 end
 
@@ -40,3 +41,31 @@ def make_relationships
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
 end
+
+def make_messages
+  users = User.all
+  user=User.first
+  sendto=users[2..50]
+  recvfrom=users[2..50]
+  sendto.each   do |reciever| 
+                  content = Faker::Lorem.sentence(5)
+                  Message.create!(content: content,from_user_id: user.id,to_user_id: reciever.id) 
+                end
+
+  recvfrom.each do|sender| 
+                   content = Faker::Lorem.sentence(5)
+                   Message.create!(content: content,from_user_id: sender.id,to_user_id: user.id) 
+                end
+
+end
+
+def rand_messages
+   count=User.count
+  10000.times do 
+     x=rand(1..count)
+     y=rand(1..count)
+     content = Faker::Lorem.sentence(5)
+     Message.create!(content: content,from_user_id: x,to_user_id: y) 
+  end
+end
+

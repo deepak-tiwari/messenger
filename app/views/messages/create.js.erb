@@ -1,0 +1,4 @@
+<% content1 = render(:partial => 'messages/my_message', :locals => {:message => @message}) %>
+<% content2 = render(:partial => 'messages/form') %>
+$("#all_messages").prepend("<%= j(content1) %>");
+$("#message_form").replaceWith("<%= j(content2) %>");

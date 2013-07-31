@@ -1,0 +1,13 @@
+
+<% @messages.each do |message| %>
+<ol >
+    <i><b><span class="user">
+       <%= message.sender.name%>
+    </span>
+    </b></i>
+    <span class="content"><%= message.content %></span>
+    <span class="timestamp">
+      Sent <%= time_ago_in_words(message.created_at) %> ago.
+    </span>
+</ol>
+<% end %>

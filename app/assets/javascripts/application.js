@@ -15,3 +15,6 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require private_pub
+//= require jquery-ui
+//= require jquery.tokeninput

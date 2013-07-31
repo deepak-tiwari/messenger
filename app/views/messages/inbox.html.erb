@@ -1,0 +1,25 @@
+<% provide(:title, current_user.name) %>
+
+<div class="row">
+  <aside class="span4">
+    <div class="row">
+        <%= link_to gravatar_for(current_user, size: 100), root_url %>
+        <h2><%= link_to current_user.name, root_url %></h2>
+    </div>
+  </aside>
+  <div class="span8" >
+        <h2>Inbox</h2>
+        
+        <div id="my_messages"  >
+          <% @messages.each do |message| %>
+            <%= render :partial => 'messages/my_message', :locals => {:message => message} %>
+          <% end %>
+        </div>
+
+  </div>
+</div>
+
+
+<%= subscribe_to "/messages/new" %>
+
+

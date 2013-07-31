@@ -1,0 +1,20 @@
+
+
+	<ol >
+	    <p>
+	    	<i><b><span class="user">
+	       <%= message.sender.name%>
+	             </span>
+	       </b></i>
+	       to
+	       <i><b><span class="user">
+	          <%= message.receiver.name%>
+	            </span>
+	       </b></i>
+	    </p>
+	    <span class="content"><%= message.content %></span>
+	    <span class="timestamp">
+	      Sent <%= time_ago_in_words(message.created_at) %> ago.
+	    </span>
+	</ol>
+

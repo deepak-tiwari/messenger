@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update,:destroy,:following, :followers]
+  before_action :signed_in_user, only: [:index, :edit, :update,:destroy,:following, :followers,:chathistory]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
@@ -20,9 +20,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome"
+      flash[:success] = "Welcome!"
       redirect_to @user 
     else
+      flash.now[:failure] = "Invalid fields!"
       render 'new'
     end
   end
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
+      flash.now[:failure] = "Profile can't be updated"
       render 'edit'
     end
   end
@@ -58,6 +60,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  def search_on_title
+    # search_on_title is a method on the model to do a wildcard search on keyword
+    result = User.search_on_title(params[:name], params[:email])
+    render json: result.map(&:title)
+  end
+
+  def chathistory
+      user=User.find(params[:id])
+      @messages=conversation(current_user,user)
+      render 'chat_history'
   end
 
   private

@@ -1,0 +1,40 @@
+<%= form_for Message.new, :remote => true do |f| %>
+
+  <div class="field">
+    <%= f.label :to_user_id %><br>
+    <%= f.number_field :to_user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Send"%>
+  </div>
+<% end %>
+
+
+
+
+<script>
+  $(function() {
+    var names = new Array();
+    <% User.all.each do |user| %>
+      names.push({id:<%= user.id %> , name:"<%= j(user.name) %>"});
+    <% end %>
+    $("#message_to_user_id").tokenInput(names, {
+      theme: 'facebook',
+      preventDuplicates: true,
+      tokenLimit: 1,
+      allowCustomEntry: true,
+      noResultsText: "No user matched",
+      searchingText: "Searching...",
+      searchDelay: 1,
+      minChars: 1
+    });
+  });
+</script>
+
+
