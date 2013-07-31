@@ -21,9 +21,9 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome!"
-      redirect_to @user 
+      redirect_to  @user 
     else
-      flash.now[:failure] = "Invalid fields!"
+      flash.now[:failure] = "Invalid highlighted fields!"
       render 'new'
     end
   end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
-      flash.now[:failure] = "Profile can't be updated"
+      flash.now[:failure] = "Invalid highlighted field !"
       render 'edit'
     end
   end

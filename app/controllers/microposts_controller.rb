@@ -11,7 +11,7 @@ class MicropostsController < ApplicationController
       redirect_to root_url
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
-      flash.now[:failure] = "Micropost can't be blank!"
+      flash.now[:failure] = "content can't be blank!"
       render 'static_pages/home'
     end
   end

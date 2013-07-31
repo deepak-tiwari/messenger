@@ -31,14 +31,15 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-     @message = Message.create!(
+     #debugger
+     @message = Message.create(
       :from_user_id => current_user.id,
       :to_user_id => message_params[:to_user_id],
       :content => message_params[:content])
      #if(@message.nil?)
      #flash.now[:failure] = "Invalid To user or Content  field !!!"
     # else
-       flash.now[:success] = "message sent.."
+      # flash.now[:success] = "message sent.."
    # end
     # PrivatePub.publish_to("/messages/new", message: @message)
    # @message = Message.new(message_params)   
