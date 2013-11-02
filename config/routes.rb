@@ -1,4 +1,4 @@
-App1::Application.routes.draw do
+Messenger::Application.routes.draw do
   resources :users do
     member do
       get :following, :followers,:chathistory

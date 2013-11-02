@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-App1::Application.load_tasks
+Messenger::Application.load_tasks
